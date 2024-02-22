@@ -44,3 +44,22 @@ const filteredCars = cars.filter((car) => {
 }); // end of filter
 
 console.log({ filteredCars });
+
+// example 4
+const filterGames = (games, monthIndex) => {
+  const filteredGames = games.filter((game) => {
+    const dateObject = new Date(game.date);
+    return dateObject.getMonth() === monthIndex;
+  });
+  console.log({ filteredGames });
+};
+
+fetch("js/schedule.json")
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    console.log({ data });
+    filterGames(data, 1);
+  })
+  .catch(); //promise
