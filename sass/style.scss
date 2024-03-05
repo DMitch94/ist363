@@ -1,9 +1,9 @@
 @use "./abstracts/vars";
 
 @use "./base";
-@use "./layout/";
+@use "./layout";
 
-@use "./header" @use "./footer" $color__orange: #f76900;
+$color__orange: #f76900;
 $font__primary: Arial, Verdana, sans-serif;
 
 :root {
