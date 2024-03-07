@@ -1,4 +1,5 @@
-@use "../abstracts/vars" .btn {
+@use "../abstracts/vars";
+.btn {
   background-color: gray;
   color: white;
   padding: 1rem;
@@ -9,7 +10,7 @@
   text-decoration: none;
   border-radius: 0.5rem;
   &--primary {
-    background-color: vars.$color__pink;
+    background-color: vars.$color__primary;
   }
   &--secondary {
     background-color: transparent;

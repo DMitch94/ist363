@@ -20,10 +20,13 @@ const displayCategory = (category, properties) => {
   const sectionElement = document.createElement("section");
   sectionElement.classList.add("category");
 
+  const containerDiv = document.createElement("div");
+  containerDiv.classList.add("container");
+
   const sectionTitle = document.createElement("h2");
   sectionTitle.textContent = category.label.plural;
 
-  sectionElement.appendChild(sectionTitle);
+  containerDiv.appendChild(sectionTitle);
 
   //console.log(category.label.singular);
   // 1. filter properties
@@ -55,15 +58,15 @@ const displayCategory = (category, properties) => {
 
     articleElement.innerHTML = propertyHtml;
 
-    sectionElement.appendChild(articleElement);
+    containerDiv.appendChild(articleElement);
 
     // const propertyTitle = document.createElement('h3');
     // propertyTitle.classList.add('property--title');
   }); //end of forEach
 
   //2. loop and append properties
-
-  document.body.appendChild(sectionElement);
+  sectionElement.appendChild(containerDiv);
+  containerDiv.appendChild(sectionElement);
 }; //end of displayCategory
 
 Promise.all([
