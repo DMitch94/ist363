@@ -1,4 +1,6 @@
-footer {
+@use "./abstracts/vars";
+
+.footer {
   background-color: #000;
   color: white;
 }

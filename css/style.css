@@ -1,9 +1,10 @@
-/* Error: expected ";".
+/* Error: Can't find stylesheet to import.
  *   ,
- * 1 | @use "./header" @use "./footer";
- *   |                 ^
+ * 1 | @use "./abstracts/vars";
+ *   | ^^^^^^^^^^^^^^^^^^^^^^^
  *   '
- *   sass\layout\_index.scss 1:17  @use
+ *   sass\layout\_header.scss 1:1  @use
+ *   sass\layout\_index.scss 1:1   @use
  *   sass\style.scss 4:1           root stylesheet */
 
 body::before {
@@ -14,5 +15,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: 'Error: expected ";".\a   \2577 \a 1 \2502  @use "./header" @use "./footer";\d\a   \2502                  ^\a   \2575 \a   sass\\layout\\_index.scss 1:17  @use\a   sass\\style.scss 4:1           root stylesheet';
+  content: "Error: Can't find stylesheet to import.\a   \2577 \a 1 \2502  @use \"./abstracts/vars\";\d\a   \2502  ^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   sass\\layout\\_header.scss 1:1  @use\a   sass\\layout\\_index.scss 1:1   @use\a   sass\\style.scss 4:1           root stylesheet";
 }
