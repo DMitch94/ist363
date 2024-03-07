@@ -1,87 +1,89 @@
-//console.log("js has been loaded");
+// console.log("js has been loaded!");
 
-const menuBtn = document.getElementById("menuBtn");
-const mobileMenu = document.getElementById("mobileMenu");
-const closeBtn = document.getElementById("closeBtn");
+const menuBtn = document.getElementById('menuBtn')
+const mobileMenu = document.getElementById('mobileMenu')
+const closeBtn = document.getElementById('closeBtn')
+const contentDiv = document.getElementById('content')
 
-//"event name", callback function
-menuBtn.addEventListener("click", function () {
-  //console.log("Click Click");
-  mobileMenu.classList.add("active");
-}); //end of menuBtn click
+// "event name", callback function
+menuBtn.addEventListener('click', () => {
+  // console.log("cllllllicked!!");
+  mobileMenu.classList.add('active')
+}) // end of menuBtn click
 
-closeBtn.addEventListener("click", function () {
-  //console.log("Click Click");
-  mobileMenu.classList.remove("active");
-}); //end of menuBtn click
+closeBtn.addEventListener('click', () => {
+  // console.log("cllllllicked!!");
+  mobileMenu.classList.remove('active')
+}) // end of menuBtn click
 
 const displayCategory = (category, properties) => {
-  // console.log("displaying category!");
-  const sectionElement = document.createElement("section");
-  sectionElement.classList.add("category");
+  //console.log({category});
+  const sectionElement = document.createElement('section')
+  sectionElement.classList.add('slider')
 
-  const containerDiv = document.createElement("div");
-  containerDiv.classList.add("container");
+  const containerDiv = document.createElement('div')
+  containerDiv.classList.add('slider__container')
 
-  const sectionTitle = document.createElement("h2");
-  sectionTitle.textContent = category.label.plural;
+  const sliderGrid = document.createElement('div')
+  sliderGrid.classList.add('slider__grid')
 
-  containerDiv.appendChild(sectionTitle);
+  // const sectionTitle = document.createElement('h2')
+  // sectionTitle.textContent = category.label.plural
+
+  // containerDiv.appendChild(sectionTitle)
 
   //console.log(category.label.singular);
   // 1. filter properties
   const filteredProperties = properties.filter((property) => {
     // return true or false
-    return category.label.singular === property.type;
-  });
+    return category.label.singular === property.type
+  })
 
   filteredProperties.sort((a, b) => {
     if (a.name < b.name) {
-      return -1;
+      return -1
     }
     if (a.name > b.name) {
-      return 1;
+      return 1
     }
-    return 0;
-  });
+    return 0
+  })
 
-  //console.log({ filteredProperties });
+  //console.log({filteredProperties});
   filteredProperties.forEach((property) => {
-    const articleElement = document.createElement("article");
-    articleElement.classList.add("property");
+    const articleElement = document.createElement('article')
+    articleElement.classList.add('slider__item')
 
     let propertyHtml = `
       <h3 class="property--title">${property.name}</h3>
       <p class="property--description">${property.description}</p>
       <p class="property--price">${property.price}</p>
-    `;
+    `
 
-    articleElement.innerHTML = propertyHtml;
+    articleElement.innerHTML = propertyHtml
 
-    containerDiv.appendChild(articleElement);
+    sliderGrid.appendChild(articleElement)
+  }) // end of forEach
 
-    // const propertyTitle = document.createElement('h3');
-    // propertyTitle.classList.add('property--title');
-  }); //end of forEach
-
-  //2. loop and append properties
-  sectionElement.appendChild(containerDiv);
-  containerDiv.appendChild(sectionElement);
-}; //end of displayCategory
+  // 2. loop and append properties
+  containerDiv.appendChild(sliderGrid)
+  sectionElement.appendChild(containerDiv)
+  contentDiv.appendChild(sectionElement)
+} // end of displayCategory
 
 Promise.all([
   // fetch 1
-  fetch("js/properties.json").then((response) => response.json()),
+  fetch('js/properties.json').then((response) => response.json()),
   // fetch 2
-  fetch("js/categories.json").then((response) => response.json()),
+  fetch('js/categories.json').then((response) => response.json()),
 ])
   .then(([properties, categories]) => {
-    console.log({ properties });
-    console.log({ categories });
+    //console.log({properties});
+    //console.log({categories});
     categories.forEach((category) => {
-      displayCategory(category, properties);
-    });
+      displayCategory(category, properties)
+    })
   })
   .catch((error) => {
-    console.error("There was a problem fetching the data:", error);
-  });
+    console.error('There was a problem fetching the data:', error)
+  })

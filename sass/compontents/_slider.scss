@@ -1,0 +1,32 @@
+@use '../abstracts/mixins';
+
+.slider {
+  background-color: darkslateblue;
+  &__container {
+    background-color: darkturquoise;
+    overflow-x: scroll;
+    padding-left: 1rem;
+    @include mixins.breakpoint(tablet) {
+      padding-left: calc((100% - 700px) / 2);
+    }
+    @include mixins.breakpoint(laptop) {
+      padding-left: calc((100% - 1024px) / 2);
+    }
+    @include mixins.breakpoint(desktop) {
+      padding-left: calc((100% - 1140px) / 2);
+    }
+  }
+  &__grid {
+    background-color: deeppink;
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+    gap: 1rem;
+    grid-auto-flow: column;
+  }
+  &__item {
+    background-color: darkorange;
+    width: 300px;
+    height: 400px;
+  }
+}

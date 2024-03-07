@@ -5,19 +5,19 @@
   font-weight: $weight;
 }
 @mixin breakpoint($size) {
-  @if $size == "phone" {
+  @if $size == 'phone' {
     @media (max-width: 699px) {
       @content;
     }
-  } @else if $size == "tablet" {
+  } @else if $size == 'tablet' {
     @media (min-width: 700px) {
       @content;
     }
-  } @else if $size == "laptop" {
+  } @else if $size == 'laptop' {
     @media (min-width: 1024px) {
       @content;
     }
-  } @else if $size == "desktop" {
+  } @else if $size == 'desktop' {
     @media (min-width: 1140px) {
       @content;
     }
